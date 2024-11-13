@@ -4,73 +4,73 @@
 
 int main()
 {
-	int number_box;	//¥æ´«¼Æ¦r
-	char color_box;	//¥æ´«ªá¦â
-	int number[5] = {51,10,28,13,1};	//¶Ã¼Æ
-	char card_color[5];	//ªá¦â
-	int card_number[5];	//¼Æ¦r
+	int number_box;	//äº¤æ›æ•¸å­—
+	char color_box;	//äº¤æ›èŠ±è‰²
+	int number[5] = {51,10,28,13,1};	//äº‚æ•¸
+	char card_color[5];	//èŠ±è‰²
+	int card_number[5];	//æ•¸å­—
 
-	srand(time(NULL));	//®É¶¡¶Ã¼Æ
+	srand(time(NULL));	//æ™‚é–“äº‚æ•¸
 
-	//²£¥Í¶Ã¼Æ
+	//ç”¢ç”Ÿäº‚æ•¸
 	for (int i = 0; i < 5; i++)
 	{
 		number[i] = (rand() % 52) + 1;
 
-		//Á×§K­«½Æ
+		//é¿å…é‡è¤‡
 		while (number[0] == number[1] || number[2] == number[0] || number[0] == number[3] || number[0] == number[4]|| number[1] == number[2]|| number[1] == number[3]|| number[1] == number[4]|| number[2] == number[3]|| number[2] == number[4]|| number[3] == number[4])
 		{
 			number[i] = (rand() % 52) + 1;
 		}
 	}
 
-	//§PÂ_ªá¦â
+	//åˆ¤æ–·èŠ±è‰²
 	for (int i = 0; i < 5; i++)
 	{
-		//¶Â®ç
+		//é»‘æ¡ƒ
 		if (number[i] / 13 == 0)	
 		{
 			card_color[i] = 'S';
 		}
 		
-		//¬õ®ç
+		//ç´…æ¡ƒ
 		else if (number[i] / 13 == 1)	
 		{
 			card_color[i] = 'H';
 		}
 
-		//¤è¶ô
+		//æ–¹å¡Š
 		else if (number[i] / 13 == 2)	
 		{
 			card_color[i] = 'D';
 		}
 
-		//±öªá
+		//æ¢…èŠ±
 		else    
 		{
 			card_color[i] = 'C';
 		}
 	}
 
-	//§PÂ_¼Æ¦r
+	//åˆ¤æ–·æ•¸å­—
 	for (int i = 0; i < 5; i++)
 	{
 			card_number[i] = (number[i] % 13) + 1;
 	}
 
-	//¤ñ¤j¤p	 ¤p --> ¤j
+	//æ¯”å¤§å°	 å° --> å¤§
 	for (int n = 4; n >= 1; n--)
 	{
 		for (int t = 1; t <= n; t++)
 		{
 			if (card_number[t - 1] < card_number[t])
 			{
-				//¥æ´«¼Æ¦r
+				//äº¤æ›æ•¸å­—
 				number_box = card_number[t - 1];
 				card_number[t - 1] = card_number[t];
 				card_number[t] = number_box;
 
-				//¥æ´«ªá¦â
+				//äº¤æ›èŠ±è‰²
 				color_box = card_color[t - 1];
 				card_color[t - 1] = card_color[t];
 				card_color[t] = color_box;
@@ -78,61 +78,61 @@ int main()
 		}
 	}
 
-	//¿é¥X5±iµP
+	//è¼¸å‡º5å¼µç‰Œ
 	for (int i = 0; i < 5; i++)
 	{
 		printf("%c%d ", card_color[i], card_number[i]);
 	}
 
-	printf("\n¦¹µP«¬¬°: ");
+	printf("\næ­¤ç‰Œå‹ç‚º: ");
 
-	//¦Pªá¶¶
+	//åŒèŠ±é †
 	if (card_color[0] == card_color[1] && card_color[1] == card_color[2] && card_color[2] == card_color[3] && card_color[3] == card_color[4])
 	{
 		if (card_number[0] == (card_number[4] + 4))
-			printf("¦Pªá¶¶");
+			printf("åŒèŠ±é †");
 	}
 
-	//¥|±ø
+	//å››æ¢
 	else if (card_number[0] == card_number[3] || card_number[1] == card_number[4])
 	{
-		printf("¥|±ø");
+		printf("å››æ¢");
 	}
 
-	//¸¬Äª
+	//è‘«è˜†
 	else if (card_number[0] == card_number[2] && card_number[3] == card_number[4] || card_number[0] == card_number[1] && card_number[2] == card_number[4])
 	{
-		printf("¸¬Äª");
+		printf("è‘«è˜†");
 	}
 
-	//¶¶¤l
+	//é †å­
 	else if (card_number[0] == (card_number[4] + 4))
 	{
-		printf("¶¶¤l");
+		printf("é †å­");
 	}
 	
-	//¤T±ø
+	//ä¸‰æ¢
 	else if (card_number[0] == card_number[2] || card_number[1] == card_number[3] || card_number[2] == card_number[4])
 	{
-		printf("¤T±ø");
+		printf("ä¸‰æ¢");
 	}
 	
-	//¨â¹ï
+	//å…©å°
 	else if (card_number[0] == card_number[1] && card_number[2] == card_number[3] || card_number[0] == card_number[1] && card_number[3] == card_number[4] || card_number[1] == card_number[2] && card_number[3] == card_number[4])
 	{
-		printf("¨â¹ï");
+		printf("å…©å°");
 	}
 	
-	//¤@¹ï
+	//ä¸€å°
 	else if (card_number[0] == card_number[1] || card_number[1] == card_number[2] || card_number[2] == card_number[3] || card_number[3] == card_number[4])
 	{
-		printf("¤@¹ï");
+		printf("ä¸€å°");
 	}
 	
-	//ÂøµP
+	//é›œç‰Œ
 	else
 	{
-		printf("ÂøµP");
+		printf("é›œç‰Œ");
 	}
 
 	return 0;
